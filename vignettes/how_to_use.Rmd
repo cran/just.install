@@ -1,0 +1,78 @@
+---
+title: "How to use just.install"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{How to use just.install}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+    echo=TRUE,
+    eval=FALSE,
+    comment = "#>"
+)
+```
+
+
+The purpose of this package is to provide a simple utility to *just install* R packages, without loading it. This is especially useful when using with packages like **[{box}](https://klmr.me/box/)**, which can be use to only load specify functions rather than a full package.
+
+
+This package is a wrapper for the *install_* family of functions in the [{remotes}](https://remotes.r-lib.org/) package.
+
+
+There are many tools to load install and load packages, which this tool does not try to replace. This package is comprised of just one function (*justinstall()*), which only does the following:
+
+
+1. Checks if the package is installed. If it is installed, it won't load it nor attempt to reinstall (unlike _require()_).
+
+1. If the package is not there, it will install it from the specified source. 
+
+The second motivation behind this package is too address the a common requirement in R training/university assignment, where it is asked to provide a "self-contained" script or notebook that install all required libraries. Having a function that does check before installing can make testing faster by allowing to run code from start to end without reinstalling packages over and over (Note:this does not pretend to be a replacement to [{renv}](https://rstudio.github.io/renv/)).
+
+
+## How to use
+
+To determine what to install, create a data frame or a *tibble*, containing the package name, the source repoistory and the url/github adress or the repository in question. For instance, using **tibble::tribble()**:
+
+```{r}
+packages_to_install <- tibble::tribble(~package,       ~source,~url,
+                                  "librarian",    "github","DesiQuintans/librarian",    
+                                  "box",          "cran","",
+                                  "randomForest", "cran","",    # for RandomForest
+                                  "here",         "cran","",
+                                  "fs",           "cran","",
+                                  "aussiemaps",    "r-universe","https://carlosyanez.r-universe.dev"
+                                  )
+
+```
+
+
+Then, just pass the data frame/tibble as input into the function:
+
+```{r}
+just.install::justinstall(packages_to_install)
+```
+
+
+Finally, load the packages or functions using your preferred method.
+
+As mentioned before, this package leverages the *install_* family from the remotes package. The  sources and url formats matches each of those functions, i.e.:
+
+|Source | URL |
+|-------|--------------------------------|
+|cran   | (empty,uses system settings)   |
+|bioc   | package name, for more options, look at ?install_bioc|
+|bitbucket| user/repository |
+|dev     | (empty)          |
+|git     | url/file.git     |
+|gitlab  | user/repository  |
+|github  | user/repository  |
+|local   | folder           |
+|svn     | url              |
+|url     | url              |
+|r-universe| url            |
+
+For more details, you can check the documentation for each *install_* function.
+

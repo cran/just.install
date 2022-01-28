@@ -1,0 +1,12 @@
+da2434641c672bb2f9747b96cfb976fd *DESCRIPTION
+dbb15e2d107627a1c82a573964caab16 *NAMESPACE
+042c6a84b5429590520a658cdf97f0b4 *NEWS.md
+810c28d123fd2de521e3d79bdce3dfc5 *R/just.install.R
+ae92a13fb31f982a92003a8c996c2891 *README.md
+084241272bc33282ba2d52f81566e120 *build/vignette.rds
+46f5bad1de8607c31b3a5ac3d2fd47d9 *inst/doc/how_to_use.R
+b76e8f1ed973ffa1b90b2537e358b511 *inst/doc/how_to_use.Rmd
+d818574a2f77fb65462ff6601b33d2a1 *inst/doc/how_to_use.html
+4e45d5382f732cbd1eedc919e43afa56 *man/install_package.Rd
+2c1b30594f054c0c66b1f7b86996dba9 *man/justinstall.Rd
+b76e8f1ed973ffa1b90b2537e358b511 *vignettes/how_to_use.Rmd
